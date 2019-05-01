@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct directoryNode
+{
+char directoryName;
+int filecount;
+struct fileNode
+{
+char fileName[100];
+}file[100];
+};
+int main(void)
+{
+int directoryCount, i, n, flag, c;
+char temp, key[100];
+printf("-SIGLE LEVEL DIRECTORY-");
+printf("\nEnter the number of files: ");
+scanf("%d", &directoryCount);
+struct directoryNode directory[directoryCount];
+for(i=0; i<directoryCount; i++)
+{
+n = rand()%26;
+temp = (char)(n+65);
+directory[i].directoryName = temp;
+}
+for(i=0; i<directoryCount; i++)
+printf("%c\t", directory[i].directoryName);
+printf("\nEnter the file names: ");
+for(i=0; i<directoryCount; i++)
+{
+printf("\nFile[%d]: ", i);
+scanf("%s", directory[i].file[i].fileName);
+}
+printf("STRUCTURE:\n");
+for(i=0; i<directoryCount; i++)
+{
+printf("%c -> %s\n", directory[i].directoryName,
+directory[i].file[i].fileName);
+}
+repeat:
+flag = 0;
+printf("\nEnter the file you want to get the path of: ");
+scanf("%s", &key);
+for(i=0; i<directoryCount; i++)
+{
+if(strcmpi(key, directory[i].file[i].fileName) == 0)
+{
+flag = 1;
+printf("%c -> %s\n", directory[i].directoryName,
+directory[i].file[i].fileName);
+}
+}
+if(flag == 0)
+printf("\nFile not found!");
+printf("\nDo you want to get more file locations?(1/0): ");
+scanf("%d", &c);
+if(c)
+goto repeat;
+return 0;
+}
